@@ -12,23 +12,22 @@ const Chatform = ({ chatHistory, setChatHistory, generateBotResponse }) => {
 		inputRef.current.value = "";
 
 		setChatHistory((prevChatHistory) => [
-			...prevChatHistory,
-			{ role: "user", content: userMessage },
+			...prevChatHistory, 
+			{ role: "user", text: userMessage },
 		]);
 
 		setTimeout(() => {
 			setChatHistory((prevChatHistory) => [
 				...prevChatHistory,
 				{
-					role: "bot",
-					content: (
-						<span className="loading loading-dots loading-md"></span>
-					),
+					role: "model",
+					text: 
+						<span className="loading loading-dots loading-md"></span>, loading:true
 				},
 			]);
 			generateBotResponse([
 				...chatHistory,
-				{ role: "user", content: userMessage },
+				{ role: "user", text: userMessage },
 			]);
 		}, 1000);
 	};
